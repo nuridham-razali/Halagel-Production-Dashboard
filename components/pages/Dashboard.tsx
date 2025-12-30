@@ -255,9 +255,11 @@ export const Dashboard: React.FC = () => {
                       <div className={`p-6 flex justify-between items-center border-b ${group.isOffDay ? 'bg-amber-50 dark:bg-amber-900/10 border-amber-100 dark:border-amber-900/30' : 'border-gray-100 dark:border-slate-800 bg-gray-50/50 dark:bg-slate-800/50'}`}>
                           <div className="flex items-center gap-4">
                               {group.isOffDay ? <Palmtree className="w-6 h-6 text-amber-500" /> : <Calendar className="w-6 h-6 text-slate-400" />}
-                              <div className="flex items-baseline gap-2">
+                              <div className="flex items-center gap-3">
                                 <span className={`text-xl font-black ${group.isOffDay ? 'text-amber-700 dark:text-amber-400' : 'text-slate-800 dark:text-white'}`}>{datePart}</span>
-                                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{dayPart}</span>
+                                <span className={`text-xl font-medium uppercase tracking-tight ${group.isOffDay ? 'text-amber-600/70' : 'text-slate-500 dark:text-slate-400'}`}>
+                                  {dayPart}
+                                </span>
                               </div>
                               {group.isOffDay && (
                                 <span className="px-3 py-1 bg-amber-500 text-white text-[9px] font-black uppercase rounded-full shadow-sm tracking-widest">
