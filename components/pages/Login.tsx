@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { Factory, Lock, User as UserIcon } from 'lucide-react';
-import { INITIAL_USERS } from '../../constants';
 
 export const Login: React.FC = () => {
   const { login } = useAuth();
@@ -17,14 +16,6 @@ export const Login: React.FC = () => {
       setError('Invalid username or password');
     }
   };
-
-  const fillDemo = (role: string) => {
-    const u = INITIAL_USERS.find(user => user.role === role);
-    if (u) {
-        setUsername(u.username);
-        setPassword(u.password || '');
-    }
-  }
 
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
@@ -46,7 +37,7 @@ export const Login: React.FC = () => {
                 )}
                 
                 <div className="relative">
-                    <UserIcon className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <UserIcon className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                     <input 
                         type="text" 
                         placeholder="Username"
@@ -58,7 +49,7 @@ export const Login: React.FC = () => {
                 </div>
                 
                 <div className="relative">
-                    <Lock className="absolute left-3 top-3 w-5 h-5 text-gray-400" />
+                    <Lock className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
                     <input 
                         type="password" 
                         placeholder="Password"
@@ -76,16 +67,6 @@ export const Login: React.FC = () => {
                     Sign In
                 </button>
             </form>
-
-            <div className="mt-8 pt-6 border-t border-gray-100">
-                <p className="text-xs text-center text-gray-400 mb-3">Quick Demo Login</p>
-                <div className="grid grid-cols-2 gap-2">
-                    <button onClick={() => fillDemo('admin')} className="text-xs py-1 px-2 bg-purple-50 text-purple-600 rounded hover:bg-purple-100">Admin</button>
-                    <button onClick={() => fillDemo('manager')} className="text-xs py-1 px-2 bg-blue-50 text-blue-600 rounded hover:bg-blue-100">Manager</button>
-                    <button onClick={() => fillDemo('planner')} className="text-xs py-1 px-2 bg-amber-50 text-amber-600 rounded hover:bg-amber-100">Planner</button>
-                    <button onClick={() => fillDemo('operator')} className="text-xs py-1 px-2 bg-emerald-50 text-emerald-600 rounded hover:bg-emerald-100">Operator</button>
-                </div>
-            </div>
         </div>
       </div>
     </div>
