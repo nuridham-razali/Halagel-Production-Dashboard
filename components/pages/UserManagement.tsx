@@ -12,7 +12,12 @@ export const UserManagement: React.FC = () => {
   const [isAdding, setIsAdding] = useState(false);
   
   // Use the service to get the active URL (either local or hardcoded)
-  const [sheetUrl, setSheetUrl] = useState(localStorage.getItem('halagel_sheets_api_url') || GoogleSheetsService.getActiveUrl());
+  // Fix: Ensure the initial state is always a string to avoid 'string | null' type errors
+  const [sheetUrl, setSheetUrl] = useState<string>(
+    localStorage.getItem('halagel_sheets_api_url') || 
+    GoogleSheetsService.getActiveUrl() || 
+    ''
+  );
   
   const [newUser, setNewUser] = useState<Omit<User, 'id'>>({
       name: '',
@@ -23,7 +28,8 @@ export const UserManagement: React.FC = () => {
   });
 
   const handleSaveSheetUrl = () => {
-    localStorage.setItem('halagel_sheets_api_url', sheetUrl);
+    // Fix: Ensure sheetUrl is a string before saving
+    localStorage.setItem('halagel_sheets_api_url', sheetUrl || '');
     window.dispatchEvent(new CustomEvent('app-notification', { 
         detail: { message: 'DATABASE CONFIGURATION UPDATED', type: 'success' } 
     }));
@@ -94,7 +100,7 @@ export const UserManagement: React.FC = () => {
                       type="text"
                       placeholder="Google Apps Script URL"
                       className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-3 rounded-2xl outline-none focus:ring-2 focus:ring-indigo-500 text-[11px] font-mono text-slate-600 dark:text-slate-300"
-                      value={sheetUrl}
+                      value={sheetUrl || ''}
                       onChange={(e) => setSheetUrl(e.target.value)}
                   />
                 </div>
