@@ -155,25 +155,25 @@ export const Dashboard: React.FC = () => {
                <TrendingUp className="w-16 h-16" />
             </div>
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Monthly Plan (Total)</p>
-            <h3 className="text-3xl font-black mt-1 text-slate-800 dark:text-white">{(dashboardData.selectedMonthStats.plan || 0).toLocaleString()}</h3>
+            <h3 className="text-3xl font-black mt-1 text-slate-800 dark:text-white font-mono">{(dashboardData.selectedMonthStats.plan || 0).toLocaleString()}</h3>
         </div>
         <div className="glass-panel p-6 rounded-3xl border-l-4 border-emerald-500 shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                <CheckCircle className="w-16 h-16" />
             </div>
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Monthly Actual (Total)</p>
-            <h3 className="text-3xl font-black mt-1 text-slate-800 dark:text-white">{(dashboardData.selectedMonthStats.actual || 0).toLocaleString()}</h3>
+            <h3 className="text-3xl font-black mt-1 text-slate-800 dark:text-white font-mono">{(dashboardData.selectedMonthStats.actual || 0).toLocaleString()}</h3>
         </div>
         <div className="glass-panel p-6 rounded-3xl border-l-4 border-indigo-500 shadow-sm relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
                <RefreshCw className="w-16 h-16" />
             </div>
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Overall Efficiency</p>
-            <h3 className="text-3xl font-black mt-1 text-slate-800 dark:text-white">{(dashboardData.selectedMonthStats.efficiency || 0).toFixed(1)}%</h3>
+            <h3 className="text-3xl font-black mt-1 text-slate-800 dark:text-white font-mono">{(dashboardData.selectedMonthStats.efficiency || 0).toFixed(1)}%</h3>
         </div>
       </div>
 
-      {/* MONTHLY PROCESS BREAKDOWN - Grid view as requested */}
+      {/* MONTHLY PROCESS BREAKDOWN */}
       <div className="space-y-4">
         <div className="flex items-center gap-2 px-2">
             <Layers className="w-4 h-4 text-indigo-500" />
@@ -190,17 +190,17 @@ export const Dashboard: React.FC = () => {
                         <div className="space-y-4">
                             <div className="flex justify-between items-baseline">
                                 <span className="text-[9px] font-black text-slate-400 uppercase">Plan</span>
-                                <span className="text-sm font-black text-slate-800 dark:text-white">{(item.Plan || 0).toLocaleString()}</span>
+                                <span className="text-sm font-black text-slate-800 dark:text-white font-mono">{(item.Plan || 0).toLocaleString()}</span>
                             </div>
                             
                             <div className="flex justify-between items-baseline">
                                 <span className="text-[9px] font-black text-slate-400 uppercase">Actual</span>
-                                <span className="text-sm font-black text-emerald-500">{(item.Actual || 0).toLocaleString()}</span>
+                                <span className="text-sm font-black text-emerald-500 font-mono">{(item.Actual || 0).toLocaleString()}</span>
                             </div>
                             
                             <div className="pt-3 border-t border-gray-50 dark:border-slate-700 flex justify-between items-baseline">
                                 <span className="text-[9px] font-black text-slate-400 uppercase">Eff.</span>
-                                <span className={`text-xs font-black ${eff >= 100 ? 'text-emerald-500' : eff >= 75 ? 'text-amber-500' : 'text-rose-500'}`}>
+                                <span className={`text-sm font-black font-mono ${eff >= 100 ? 'text-emerald-500' : eff >= 75 ? 'text-amber-500' : 'text-rose-500'}`}>
                                     {(eff || 0).toFixed(1)}%
                                 </span>
                             </div>
@@ -266,7 +266,7 @@ export const Dashboard: React.FC = () => {
                               )}
                           </div>
                           <div className="px-4 py-1.5 bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-700 text-slate-600 dark:text-slate-300 font-black text-[11px] uppercase tracking-widest">
-                            Actual: <span className="text-emerald-500 ml-1">{(group.totalActualForDate || 0).toLocaleString()}</span>
+                            Actual: <span className="text-emerald-500 ml-1 font-mono">{(group.totalActualForDate || 0).toLocaleString()}</span>
                           </div>
                       </div>
 
@@ -296,18 +296,24 @@ export const Dashboard: React.FC = () => {
                                                 <td className="px-8 py-5">
                                                     <span className="text-sm font-black text-slate-800 dark:text-white">{entry.productName}</span>
                                                 </td>
-                                                <td className="px-8 py-5 text-right font-black text-indigo-600/80 dark:text-indigo-400/80">{(entry.planQuantity || 0).toLocaleString()} {entry.unit}</td>
-                                                <td className="px-8 py-5 text-right font-black text-emerald-500">{(entry.actualQuantity || 0).toLocaleString()} {entry.unit}</td>
+                                                <td className="px-8 py-5 text-right font-black font-mono text-indigo-600/80 dark:text-indigo-400/80 text-sm whitespace-nowrap">
+                                                    {(entry.planQuantity || 0).toLocaleString()} 
+                                                    <span className="text-[9px] ml-1 opacity-60 text-slate-600 dark:text-slate-400 font-sans tracking-tight">{entry.unit}</span>
+                                                </td>
+                                                <td className="px-8 py-5 text-right font-black font-mono text-emerald-500 text-sm whitespace-nowrap">
+                                                    {(entry.actualQuantity || 0).toLocaleString()} 
+                                                    <span className="text-[9px] ml-1 opacity-60 text-slate-600 dark:text-slate-400 font-sans tracking-tight">{entry.unit}</span>
+                                                </td>
                                                 <td className="px-8 py-5 text-center">
-                                                    <span className={`text-xs font-black ${eff >= 100 ? 'text-emerald-500' : eff >= 75 ? 'text-amber-500' : 'text-rose-500'}`}>
+                                                    <span className={`text-sm font-black font-mono ${eff >= 100 ? 'text-emerald-500' : eff >= 75 ? 'text-amber-500' : 'text-rose-500'}`}>
                                                         {(eff || 0).toFixed(0)}%
                                                     </span>
                                                 </td>
                                                 <td className="px-8 py-5 text-center">
-                                                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-tighter">{entry.batchNo || '-'}</span>
+                                                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-tighter font-mono">{entry.batchNo || '-'}</span>
                                                 </td>
                                                 <td className="px-8 py-5 text-center">
-                                                    <span className="text-base font-black text-slate-800 dark:text-white">{entry.manpower || '0'}</span>
+                                                    <span className="text-base font-black text-slate-800 dark:text-white font-mono">{entry.manpower || '0'}</span>
                                                 </td>
                                                 {hasPermission(['admin', 'manager']) && (
                                                   <td className="px-8 py-5">
@@ -315,7 +321,7 @@ export const Dashboard: React.FC = () => {
                                                           <button onClick={() => handleEdit(entry)} className="p-1.5 text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-lg transition">
                                                               <Pencil className="w-4 h-4" />
                                                           </button>
-                                                          <button onClick={() => handleDelete(entry.id)} className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/30 rounded-lg transition">
+                                                          <button onClick={() => handleDelete(entry.id)} className="p-1.5 text-slate-400 hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-lg transition">
                                                               <Trash2 className="w-4 h-4" />
                                                           </button>
                                                       </div>
