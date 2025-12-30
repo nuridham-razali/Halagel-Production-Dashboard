@@ -2,7 +2,7 @@
 import { User, ProductionEntry, OffDay } from './types';
 import { getTodayISO, getDbTimestamp } from './utils/dateUtils';
 
-export const CATEGORIES = ['Healthcare', 'Toothpaste', 'Rocksalt'] as const;
+export const CATEGORIES = ['Healthcare', 'Toothpaste', 'Rocksalt', 'Cosmetic'] as const;
 export const PROCESSES = ['Mixing', 'Encapsulation', 'Filling', 'Sorting', 'Packing'] as const;
 export const UNITS = ['KG', 'PCS'] as const;
 
@@ -20,7 +20,7 @@ export const INITIAL_OFF_DAYS: OffDay[] = [
 
 export const generateSeedProductionData = (): ProductionEntry[] => {
   const data: ProductionEntry[] = [];
-  const products = ['Pain Relief Gel', 'Minty Fresh', 'Pink Salt Fine', 'Vitamin C', 'Charcoal Paste'];
+  const products = ['Pain Relief Gel', 'Minty Fresh', 'Pink Salt Fine', 'Vitamin C', 'Charcoal Paste', 'Herbal Shampoo', 'Skin Repair Cream'];
   
   const todayStr = getTodayISO();
   const [y, m, d] = todayStr.split('-').map(Number);
@@ -41,8 +41,8 @@ export const generateSeedProductionData = (): ProductionEntry[] => {
       data.push({
         id: `seed-${i}-${idx}`,
         date: dateStr,
-        category: idx % 3 === 0 ? 'Healthcare' : idx % 3 === 1 ? 'Toothpaste' : 'Rocksalt',
-        process: PROCESSES[idx % 5],
+        category: CATEGORIES[idx % CATEGORIES.length],
+        process: PROCESSES[idx % PROCESSES.length],
         productName: prod,
         planQuantity: plan,
         actualQuantity: actual,
