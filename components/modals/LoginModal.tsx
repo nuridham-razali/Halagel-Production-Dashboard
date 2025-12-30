@@ -62,18 +62,6 @@ export const LoginModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             Log In to Dashboard
           </button>
         </form>
-
-        <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-700 text-center">
-             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">Quick Login (Demo)</p>
-             <div className="flex justify-center gap-2 flex-wrap">
-                 {['admin', 'manager', 'planner', 'operator'].map(role => (
-                     <button key={role} className="px-2.5 py-1.5 bg-slate-50 dark:bg-slate-700 rounded-lg text-[10px] font-bold text-slate-500 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 hover:text-indigo-600 transition"
-                           onClick={() => { setUsername(role); setPassword('password123'); }}>
-                         {role}
-                     </button>
-                 ))}
-             </div>
-        </div>
       </div>
     </div>
   );
