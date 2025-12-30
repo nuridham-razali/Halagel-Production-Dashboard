@@ -257,7 +257,7 @@ export const Dashboard: React.FC = () => {
                               {group.isOffDay ? <Palmtree className="w-6 h-6 text-amber-500" /> : <Calendar className="w-6 h-6 text-slate-400" />}
                               <div className="flex items-center gap-3">
                                 <span className={`text-xl font-black ${group.isOffDay ? 'text-amber-700 dark:text-amber-400' : 'text-slate-800 dark:text-white'}`}>{datePart}</span>
-                                <span className={`text-xl font-medium uppercase tracking-tight ${group.isOffDay ? 'text-amber-600/70' : 'text-slate-500 dark:text-slate-400'}`}>
+                                <span className={`text-xl font-medium uppercase tracking-tight ${group.isOffDay ? 'text-amber-800' : 'text-slate-800 dark:text-slate-200'}`}>
                                   {dayPart}
                                 </span>
                               </div>
