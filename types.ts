@@ -10,7 +10,7 @@ export interface User {
   password?: string; // In a real app, never store plain text. Used here for simulation.
 }
 
-export type Category = 'Healthcare' | 'Toothpaste' | 'Rocksalt';
+export type Category = 'Healthcare' | 'Toothpaste' | 'Rocksalt' | 'Cosmetic';
 
 export type ProcessType = 'Mixing' | 'Encapsulation' | 'Filling' | 'Sorting' | 'Packing';
 
