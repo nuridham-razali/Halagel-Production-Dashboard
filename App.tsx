@@ -10,6 +10,7 @@ import { InputActual } from './components/pages/InputActual';
 import { ProductionLog } from './components/pages/ProductionLog';
 import { ActivityLog } from './components/pages/ActivityLog';
 import { UserManagement } from './components/pages/UserManagement';
+import { ProcessAnalytics } from './components/pages/ProcessAnalytics';
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const App: React.FC = () => {
             <Route path="/plan" element={<Layout><InputPlan /></Layout>} />
             <Route path="/actual" element={<Layout><InputActual /></Layout>} />
             <Route path="/reports" element={<Layout><ProductionLog /></Layout>} />
+            <Route path="/process-analytics" element={<Layout><ProcessAnalytics /></Layout>} />
             <Route path="/logs" element={<Layout><ActivityLog /></Layout>} />
             <Route path="/users" element={<Layout><UserManagement /></Layout>} />
             <Route path="*" element={<Navigate to="/" replace />} />
